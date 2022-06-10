@@ -16,12 +16,10 @@ Visit the live Website : **[Logitrack :arrow_right:](https://XXXXXXXXX)**
   * [Different Design](#Different-Design)
 * [Features](#Features)
 * [Future features to implement](#Future-features-to-implement)
-* [Flowchart](#Flowchart)
 * [Database](#Database)
   * [Database Design](#Database-Design)
   * [Database Structure](#Database-Structure)
 * [Technologies Used](#Technologies-Used)
-
 
 ## Project
 
@@ -149,10 +147,6 @@ For the full version:
 
 ## Future features to implement
 
-## Flowchart
-
-![Website flowchart](documentation/data-design/flowchart.png)
-
 [**:back:** *Table of Content*](#Table-of-Content)
 
 ## Database
@@ -161,7 +155,7 @@ For the full version:
 
 The database design used is a relational database.
 
-* During **development**, sqlite3 was used. It is the database provided by Django and only use for development.
+* During **development**, sqlite3 was used. It is the database provided by Django and use for development.
 
 Below is a representation of the database used for this project.  
 ![Database Design](documentation/data-design/database-design.png)
@@ -172,10 +166,11 @@ Django, the framework used for the production of this project, is an MVP: Model 
 The models define the data-structure.
 
 * In this project, the following models have been developed:
+  * Item
+  * ItemStatus
   * Category
-  * Items
-  * DeletedItems
-  * Order
+  * Location
+  * DeletedItem
   * ContactUs
   * User (being a "default" model provided by django and allauth)
 
