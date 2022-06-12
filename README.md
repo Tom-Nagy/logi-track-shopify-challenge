@@ -176,6 +176,31 @@ The models define the data-structure.
 
 #### Models relationship
 
+* Item :left_right_arrow: ItemStatus: **One to Many**
+  * An item can be related to one item-status, and an item-status can be related to many items.
+
+* Item :left_right_arrow: Category: **One to Many**
+  * An item can be related to one category, and a category can be related to many items.
+
+* Item :left_right_arrow: Location: **Many to One**
+  * An item can be related to one location, and a location can be related to many items.
+
+* Item :left_right_arrow: DeletedItem: **One to One**
+  * An item can be related to one deleted-item, and a deleted-item can be related to one item.
+
+* Item :left_right_arrow: User: **One to Many**
+  * An item can be related to one user, and a user can be related to many items.
+
+* DeletedItem :left_right_arrow: User: **One to Many**
+  * A deleted-item can be related to one user, and a user can be related to many deleted-items.
+
+* DeletedItem :left_right_arrow: Item: **One to One**
+  * A deleted-item can be related to one item, and an item can be related to one deleted-items.
+
+* ContactUs :left_right_arrow: User: **One to Many**
+  * A message can be related to one user, and a user can be related to many messages.
+  * ContactUs is basically an inbox that saves messages sent by customer. It is accessible from the inventory management page.
+
 ## Technologies Used
 
 ### Programming Languages
