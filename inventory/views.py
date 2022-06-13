@@ -1,14 +1,15 @@
 ''' Views for login and inventory management '''
 
-from django.shortcuts import render, redirect, reverse
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from .models import Item
 
 
 def index(request):
-    ''' A view to render the home page '''
+    ''' Render the home page '''
     template = 'inventory/index.html'
     return render(request, template)
 
@@ -39,11 +40,19 @@ def user_logout(request):
     return redirect('home')
 
 
+@login_required
 def all_items(request):
-    ''' view to display all inventory items '''
+    ''' Display all inventory items '''
     items = Item.objects.all()
     template = 'inventory/all_items.html'
     context = {
         'items': items,
     }
     return render(request, template, context)
+
+
+@login_required
+def add_item(request):
+    ''' Add an item to the inventory '''
+    template = 'inventory/add_item.html'
+    return render(request, template)

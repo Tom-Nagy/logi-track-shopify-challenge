@@ -24,11 +24,24 @@
             href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet">
         <!-- styles and favicon -->
-        <link rel="stylesheet" href="static/css/base.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <link rel="shortcut icon" type="image/jpg" href="{% static 'images/favicon.ico' %}" />
     {% endblock %}
 
     {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+        <script src="https://kit.fontawesome.com/a5ee39e432.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" 
+            integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    {% endblock %}
+
+    {% block extra_js %}
     {% endblock %}
 
 <title>LogiTrack {% block extra_title %}{% endblock %}</title>
@@ -37,14 +50,14 @@
 <body>
 
     {% if messages %}
-        <div class="toast-container position-fixed top-3 end-3 p-3">
+        <div class="toast-container message-container p-3">
             {% for message in messages %}
-            <div class="toast align-items-center" role="alert" data-autohide="false" aria-live="assertive" aria-atomic="true">
+            <div class="toast align-items-center text-bg-primary border-0 p-2" role="alert" 
+            aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">
                     <div class="toast-body">
                         {{ message }}
                     </div>
-                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
             {% endfor %}
@@ -54,13 +67,11 @@
     {% block content %}
     {% endblock %}
 
-    {% block corejs %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    {% endblock %}
-
-    {% block extra_js %}
-    {% endblock %}
+    {% block postloadjs %}
+        <script>
+            // Display toasts messages
+            $('.toast').toast('show');
+        </script>
+        {% endblock %}
 </body>
 </html>

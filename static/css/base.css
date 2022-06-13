@@ -49,8 +49,8 @@ a:hover,
 a:active,
 a:focus {
     text-decoration: none;
+    color: #0d0d0d;
     background-color: #135ef2;
-    /* text-shadow: .5px 1px 2px #0d0d0d; */
     outline: none;
 }
 
@@ -79,17 +79,43 @@ a:focus {
     color: #0d0d0d;
 }
 
-.white {
+.offwhite {
     color: #f2f2f2;
 }
+
+/* background */
 
 .bg-red {
     background-color: #dc3545;
 }
 
-/* navbar */
+.bg-offwhite {
+    background-color: #f2f2f2;
+}
+
+/* ----------------------------------------- navbar */
 
 .navbar-brand {
     background-color: transparent;
+    color: #030ba6;
+}
+
+.active {
+    color: #0d0d0d;
+    background-color: #135ef2;
+    /* text-shadow: .5px 1px 1px #0d0d0d; */
+}
+
+/* -----------------------------------------toast messages */
+
+.message-container {
+    position: fixed;
+    top: 60px;
+    right: 6px;
+    height: 72px;
+    z-index: 99999999;
+}
+
+.message-body {
     color: #030ba6;
 }

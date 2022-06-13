@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block extra_title %} - All inventory{% endblock %}
+{% block extra_title %} - Add item{% endblock %}
 
 {% block content %}
 
@@ -13,10 +13,10 @@
                         <a class="nav-link" aria-current="page" href="{% url 'user_login' %}">Inventory management</a>
                     </li>
                     <li class="nav-item mr-2">
-                        <a class="nav-link active" href="{% url 'all_items' %}">All inventory</a>
+                        <a class="nav-link" href="{% url 'all_items' %}">All inventory</a>
                     </li>
                     <li class="nav-item mr-2">
-                        <a class="nav-link" href="{% url 'add_item' %}">Add item</a>
+                        <a class="nav-link active" href="{% url 'add_item' %}">Add item</a>
                     </li>
                     <li class="nav-item mr-2">
                         <a class="nav-link" href="{% url 'user_logout' %}">Log out</a>
@@ -30,14 +30,10 @@
         <div class="row">
             <div class="col">
                 <h2 class="text-center mt-5 mb-3">
-                    All Items
+                    Add item
                 </h2>
             </div>
-            {% for item in items %}
-                <div class="col-12">
-                    item
-                </div>
-            {% endfor %}
+            
         </div>
     </div>
     
