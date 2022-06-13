@@ -33,11 +33,13 @@
                     All Items
                 </h2>
             </div>
-            {% for item in items %}
-                <div class="col-12">
-                    item
-                </div>
-            {% endfor %}
+            {% if items %}
+                {% for item in items %}
+                    <div class="col-12">
+                        item
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     

@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .models import Item
+from .forms import ItemForm
 
 
 def index(request):
@@ -54,5 +55,19 @@ def all_items(request):
 @login_required
 def add_item(request):
     ''' Add an item to the inventory '''
+    if request.method == 'POST':
+        item_form = ItemForm(request.POST, request.FILES)
+        if item_form.is_valid():
+            added_item = item_form.save()
+            messages.success(request, 'Item added to the inventory')
+            return redirect(reverse(all_items))
+        else:
+            messages.error(request, 'Fail to add item.'
+                                    'Please ensure the form is valid.')
+    else:
+        item_form = ItemForm()
     template = 'inventory/add_item.html'
-    return render(request, template)
+    context = {
+        'item_form': item_form,
+    }
+    return render(request, template, context)

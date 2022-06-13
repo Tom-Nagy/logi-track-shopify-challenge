@@ -1,11 +1,16 @@
 ''' Models configuration for Inventory app '''
 
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class ItemStatus(models.Model):
     ''' Model that define how the data will be store for ItemStatus '''
+
+    class Meta:
+        ''' Set plural verbose name '''
+        verbose_name_plural = 'Item Status'
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -54,6 +59,8 @@ class Category(models.Model):
 
 class Item(models.Model):
     '''Model that define how the data will be stored for an item '''
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,
+                             null=True, blank=True)
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
@@ -67,8 +74,8 @@ class Item(models.Model):
     location = models.ForeignKey(
         'Location', null=True, blank=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(
-        'ItemStatus', limit_choices_to={'selectable': True}, null=True,
-        blank=True, on_delete=models.SET_NULL)
+        'ItemStatus', null=True, blank=True, on_delete=models.SET_NULL)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         ''' String method to return the name of the item '''
