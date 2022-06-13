@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
+    'inventory',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +88,15 @@ DATABASES = {
     }
 }
 
+# Store message in the session
+MESSAGES_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# login config
+# LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = 'inventory/'
+LOGOUT_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
