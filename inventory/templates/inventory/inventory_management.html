@@ -10,16 +10,16 @@
             <div class="container-fluid">
                 <a class="navbar-brand " href="{% url 'user_login' %}">LogiTrack</a>
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'user_login' %}">Inventory management</a>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link active" aria-current="page" href="{% url 'user_login' %}">Inventory management</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">All inventory</a>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link" href="{% url 'all_items' %}">All inventory</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-2">
                         <a class="nav-link" href="#">Add item</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-2">
                         <a class="nav-link" href="{% url 'user_logout' %}">Log out</a>
                     </li>
                 </ul>

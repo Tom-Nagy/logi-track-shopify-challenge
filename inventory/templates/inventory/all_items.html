@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block extra_title %} - Management{% endblock %}
+
+{% block content %}
+
+    <header>
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand " href="{% url 'user_login' %}">LogiTrack</a>
+                <ul class="nav">
+                    <li class="nav-item mr-2">
+                        <a class="nav-link" aria-current="page" href="{% url 'user_login' %}">Inventory management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'all_items' %}">All inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Add item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_logout' %}">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mt-5 mb-3">
+                    All Items
+                </h2>
+            </div>
+            {% for item in items %}
+                <div class="col-12">
+                    item
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}
