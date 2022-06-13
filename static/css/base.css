@@ -1,0 +1,84 @@
+/* ------------------------------------ Main content config */
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Lato', sans-serif;
+    color: #0d0d0d;
+    background-color: #f2f2f2;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #030ba6;
+}
+
+p {
+    max-width: 60ch;
+}
+
+.btn,
+button,
+a {
+    /* will make impossible for the user to select the text in the button */
+    user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    color: #f2f2f2;
+    background-color: #030ba6;
+    border: none;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus,
+button:hover,
+button:active,
+button:focus,
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none;
+    /* color: #030ba6; */
+    text-shadow: .5px 1px 2px #f279bc;
+    outline: none;
+}
+
+/* colors */
+.pink {
+    color: #f279bc;
+}
+
+.blue {
+    color: #030ba6;
+}
+
+.light-blue {
+    color: #135ef2;
+}
+
+.green {
+    color: #04d94f;
+}
+
+.yellow {
+    color: #f29f05;
+}
+
+.black {
+    color: #0d0d0d;
+}
+
+.white {
+    color: #f2f2f2;
+}

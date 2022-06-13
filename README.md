@@ -67,9 +67,9 @@ The website will use well known and popular font that are used online in order t
 #### Icons
 
 * Some Font Awesome icons will be part of the website for better UX.
-* The [favicon](documentation/favicon/favicon.ico) was generated from [favicon.io](https://favicon.io/favicon-generator/).
+* The [favicon](static/images/favicon.ico) was generated from [favicon.io](https://favicon.io/favicon-generator/).
 
-![Favicon](documentation/favicon/favicon.ico)
+![Favicon](documentation/favicon/favicon.png)
 
 #### Colors
 
