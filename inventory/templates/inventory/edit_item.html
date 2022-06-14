@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extra_title %} - Add item{% endblock %}
+
+{% block content %}
+
+    <header>
+        <nav class="navbar bg-offwhite">
+            <div class="container-fluid">
+                <a class="navbar-brand " href="{% url 'user_login' %}">LogiTrack</a>
+                <ul class="nav">
+                    <li class="nav-item mr-2">
+                        <a class="nav-link" aria-current="page" href="{% url 'user_login' %}">Inventory management</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link" href="{% url 'all_items' %}">All inventory</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link active" href="{% url 'add_item' %}">Add item</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link" href="{% url 'user_logout' %}">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mt-5 mb-3">
+                    Add item
+                </h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Item form -->
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'edit_item' item.id %}" class="form mb-4">
+                    {% csrf_token %}
+                    {{ item_form|crispy }}
+                    <div class="text-right">
+                        <a class="btn rounded bg-red mr-2" href="{% url 'all_items' %}" aria-label="Cancel operation">Cancel</a>
+                        <button class="btn" type="submit">Edit Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
