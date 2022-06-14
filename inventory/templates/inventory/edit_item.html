@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block extra_title %} - Add item{% endblock %}
+{% block extra_title %} - Edit item{% endblock %}
 
 {% block content %}
 
@@ -10,13 +10,13 @@
                 <a class="navbar-brand " href="{% url 'user_login' %}">LogiTrack</a>
                 <ul class="nav">
                     <li class="nav-item mr-2">
-                        <a class="nav-link" aria-current="page" href="{% url 'user_login' %}">Inventory management</a>
+                        <a class="nav-link" href="{% url 'user_login' %}">Inventory management</a>
                     </li>
                     <li class="nav-item mr-2">
                         <a class="nav-link" href="{% url 'all_items' %}">All inventory</a>
                     </li>
                     <li class="nav-item mr-2">
-                        <a class="nav-link active" href="{% url 'add_item' %}">Add item</a>
+                        <a class="nav-link" href="{% url 'add_item' %}">Add item</a>
                     </li>
                     <li class="nav-item mr-2">
                         <a class="nav-link" href="{% url 'user_logout' %}">Log out</a>

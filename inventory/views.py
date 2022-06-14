@@ -102,6 +102,10 @@ def edit_item(request, item_id):
 def item_deletion(request, item_id):
     ''' Delete an item from the inventory and create deleted_item '''
     item = get_object_or_404(Item, pk=item_id)
+
+    if request.method == 'POST':
+        deletion_form = xxx
+
     template = 'inventory/item_deletion.html'
     context = {
         'item': item,

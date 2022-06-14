@@ -84,3 +84,18 @@ class Item(models.Model):
     def get_friendly_name(self):
         ''' String method to return the firendly name of the item '''
         return str(self.friendly_name)
+
+
+class DeletedItem(models.Model):
+    '''
+    Model that define how the data will be stored for a deleted item
+    '''
+    item = models.ForeignKey(Item, null=False, blank=False,
+                             on_delete=models.CASCADE)
+    deleting_user = models.ForeignKey(User, on_delete=models.SET_NULL,
+                                      null=True, blank=True)
+    message = models.TextField(max_length=2000, null=False, blank=False)
+
+    def __str__(self):
+        ''' String method to return the name of the item '''
+        return str(self.item)
