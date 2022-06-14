@@ -73,8 +73,9 @@ class Item(models.Model):
             MinValueValidator(0)])
     location = models.ForeignKey(
         'Location', null=True, blank=True, on_delete=models.SET_NULL)
-    status = models.ForeignKey(
-        'ItemStatus', null=True, blank=True, on_delete=models.SET_NULL)
+    status = models.ForeignKey('ItemStatus', null=True, blank=True,
+                               on_delete=models.SET_NULL,
+                               related_name='status')
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -95,6 +96,7 @@ class DeletedItem(models.Model):
     deleting_user = models.ForeignKey(User, on_delete=models.SET_NULL,
                                       null=True, blank=True)
     message = models.TextField(max_length=2000, null=False, blank=False)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         ''' String method to return the name of the item '''

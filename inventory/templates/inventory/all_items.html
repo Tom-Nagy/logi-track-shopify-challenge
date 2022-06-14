@@ -37,50 +37,52 @@
         <div class="row justify-content-center">
             {% if items %}
                 {% for item in items %}
-                    <div class="col-12 col-md-4">
-                        <div class="card m-2 mx-auto">
-                            <div class="card-body p-3">
-                                <h5 class="card-title">{{ item.friendly_name }}</h5>
-                                {% if item.sku %}
-                                    <h6 class="card-subtitle mb-2 text-muted">{{ item.sku }}</h6>
-                                {% endif %}
-                                <h6 class="card-subtitle mb-2 text-muted">{{ item.category.friendly_name }}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ item.location.friendly_name }}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ item.status.friendly_name }}</h6>
-                                <p class="card-text">{{ item.description }}</p>
-                                <a href="{% url 'edit_item' item.id %}" class="card-link btn" aria-label="Link to edit item page.">Edit item</a>
-                                <a href="#" class="card-link btn rounded bg-red mr-2" 
-                                aria-label="Delete item" data-toggle="modal" data-target="#modal_id_{{item.id}}">Delete item</a>
+                    {% if item.status.friendly_name != 'deleted' %}
+                        <div class="col-12 col-md-4">
+                            <div class="card m-2 mx-auto">
+                                <div class="card-body p-3">
+                                    <h5 class="card-title">{{ item.friendly_name }}</h5>
+                                    {% if item.sku %}
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ item.sku }}</h6>
+                                    {% endif %}
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ item.category.friendly_name }}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ item.location.friendly_name }}</h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ item.status.friendly_name }}</h6>
+                                    <p class="card-text">{{ item.description }}</p>
+                                    <a href="{% url 'edit_item' item.id %}" class="card-link btn" aria-label="Link to edit item page.">Edit item</a>
+                                    <a href="#" class="card-link btn rounded bg-red mr-2" 
+                                    aria-label="Delete item" data-toggle="modal" data-target="#modal_id_{{item.id}}">Delete item</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Modal for deletion confirmation -->
-                    <div class="modal fade border-danger" id="modal_id_{{item.id}}" tabindex="-1" 
-                    aria-labelledby="modal_label_{{item.id}}" aria-hidden="true">
-                        <div class="modal-dialog modal-top-margin">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-danger" id="modal_label_{{item.id}}">
-                                        You are about to delete {{ item.friendly_name }}
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>
-                                        This action is irreversible!<br/>
-                                        Please confirm ...
-                                    </p>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="#" class="btn mr-2" data-dismiss="modal" aria-label="Close" role="button">Cancel</a>
-                                        <a href="{% url 'item_deletion' item.id %}" class="card-link btn rounded bg-red ml-2 pt-2" role="button" 
-                                        aria-label="Delete message">Continue to deletion</a>
+                        <!-- Modal for deletion confirmation -->
+                        <div class="modal fade border-danger" id="modal_id_{{item.id}}" tabindex="-1" 
+                        aria-labelledby="modal_label_{{item.id}}" aria-hidden="true">
+                            <div class="modal-dialog modal-top-margin">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-danger" id="modal_label_{{item.id}}">
+                                            You are about to delete {{ item.friendly_name }}
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            This action is irreversible!<br/>
+                                            Please confirm ...
+                                        </p>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="#" class="btn mr-2" data-dismiss="modal" aria-label="Close" role="button">Cancel</a>
+                                            <a href="{% url 'item_deletion' item.id %}" class="card-link btn rounded bg-red ml-2 pt-2" role="button" 
+                                            aria-label="Delete message">Continue to deletion</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         </div>

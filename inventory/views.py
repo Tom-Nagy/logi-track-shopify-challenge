@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Item
-from .forms import ItemForm
+from .models import Item, DeletedItem, ItemStatus
+from .forms import ItemForm, DeletedItemForm
 
 
 def index(request):
@@ -104,10 +104,27 @@ def item_deletion(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
 
     if request.method == 'POST':
-        deletion_form = xxx
+        deletion_form = DeletedItemForm(request.POST, request.FILES)
+        if deletion_form.is_valid():
+            deleted_item = deletion_form.save(commit=False)
+            user = request.user
+            deleted_item.user = user
+            # update the item status and save the item
+            item_status = ItemStatus.objects.get(name='deleted')
+            item.status = item_status
+            item.save()
+
+            deleted_item.item = item
+            deletion_form.save()
+            messages.success(request, 'Item successfuly deleted')
+            return redirect(all_items)
+
+    else:
+        deletion_form = DeletedItemForm()
 
     template = 'inventory/item_deletion.html'
     context = {
         'item': item,
+        'deletion_form': deletion_form,
     }
     return render(request, template, context)

@@ -1,12 +1,12 @@
-'''Create and configure the item form'''
+'''Create and configure the item forms'''
 
 from django import forms
 
-from .models import Item, Category, ItemStatus, Location
+from .models import Item, Category, ItemStatus, Location, DeletedItem
 
 
 class ItemForm(forms.ModelForm):
-    '''Configure the item form to add/edit products'''
+    '''Configure the item form to add/edit items'''
     class Meta:
         ''' Form meta properties '''
         model = Item
@@ -42,3 +42,11 @@ class ItemForm(forms.ModelForm):
         friendly_names = \
             [(s.id, s.get_friendly_name()) for s in status_selection]
         self.fields['status'].choices = friendly_names
+
+
+class DeletedItemForm(forms.ModelForm):
+    '''Configure the item form to delete item'''
+    class Meta:
+        ''' Form meta properties '''
+        model = DeletedItem
+        fields = ('message',)

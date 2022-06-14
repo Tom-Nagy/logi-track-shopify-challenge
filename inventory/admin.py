@@ -1,7 +1,15 @@
 ''' Admin configuration and registration for inventory app '''
 
 from django.contrib import admin
-from .models import Item, Category, Location, ItemStatus
+from .models import Item, Category, Location, ItemStatus, DeletedItem
+
+
+class DeletedItemAdmin(admin.ModelAdmin):
+    ''' Allow access to Deleted Item from admin '''
+
+    model = DeletedItem()
+
+    list_display = ('item', 'user', 'message', 'date_added')
 
 
 class LocationAdmin(admin.ModelAdmin):
