@@ -108,14 +108,14 @@ def item_deletion(request, item_id):
         if deletion_form.is_valid():
             deleted_item = deletion_form.save(commit=False)
             user = request.user
-            deleted_item.user = user
+            deleted_item.deleting_user = user
             # update the item status and save the item
             item_status = ItemStatus.objects.get(name='deleted')
             item.status = item_status
             item.save()
 
             deleted_item.item = item
-            deletion_form.save()
+            deleted_item.save()
             messages.success(request, 'Item successfuly deleted')
             return redirect(all_items)
 
@@ -128,3 +128,39 @@ def item_deletion(request, item_id):
         'deletion_form': deletion_form,
     }
     return render(request, template, context)
+
+
+@login_required
+def deleted_items(request):
+    ''' Display the deleted item '''
+    items_deleted = DeletedItem.objects.all()
+    template = 'inventory/deleted_items.html'
+    context = {
+        'items_deleted': items_deleted,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def final_deletion(request, item_id):
+    ''' Delete an item from the dadabase '''
+    item_to_deleted = get_object_or_404(Item, pk=item_id)
+    item_to_deleted.delete()
+    messages.success(request, 'Item successfuly deleted')
+
+    return redirect(reverse('deleted_items'))
+
+
+@login_required
+def restock_item(request, item_id):
+    ''' re-stock a deleted item in the inventory '''
+    item_to_restock = get_object_or_404(Item, pk=item_id)
+    # update the item status and save the item
+    item_status = ItemStatus.objects.get(name='stored')
+    item_to_restock.status = item_status
+
+    deleted_item = DeletedItem.objects.get(item=item_to_restock)
+    item_to_restock.save()
+    deleted_item.delete()
+    messages.success(request, 'Item successfully restocked')
+    return redirect(reverse('deleted_items'))

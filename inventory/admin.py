@@ -9,7 +9,7 @@ class DeletedItemAdmin(admin.ModelAdmin):
 
     model = DeletedItem()
 
-    list_display = ('item', 'user', 'message', 'date_added')
+    list_display = ('item', 'deleting_user', 'message', 'date_added')
 
 
 class LocationAdmin(admin.ModelAdmin):
@@ -59,3 +59,4 @@ admin.site.register(Item, ItemAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(ItemStatus, ItemStatusAdmin)
 admin.site.register(Location, LocationAdmin)
+admin.site.register(DeletedItem, DeletedItemAdmin)

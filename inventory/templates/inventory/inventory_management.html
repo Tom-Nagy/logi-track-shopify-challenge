@@ -27,7 +27,20 @@
         </nav>
     </header>
 
-    <h2 class="text-center mt-5 mb-3">
-        Inventory Management
-    </h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mt-5 mb-3">
+                    Inventory Management
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-s-6 col-md-2">
+                <a class="btn mr-2" href="{% url 'deleted_items' %}" aria-label="Link to the deleted items page">Deleted items</a>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
